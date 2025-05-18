@@ -1,14 +1,55 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setupSwagger = void 0;
-const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
-const yamljs_1 = __importDefault(require("yamljs"));
-const path_1 = __importDefault(require("path"));
-const swaggerDocument = yamljs_1.default.load(path_1.default.resolve(__dirname, "./swagger.yaml"));
-const setupSwagger = (app) => {
-    app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
+exports.swaggerDocument = void 0;
+exports.swaggerDocument = {
+    openapi: '3.0.0',
+    info: {
+        title: 'API Job Board',
+        version: '1.0.0',
+        description: 'Job Board API documentation',
+    },
+    servers: [
+        {
+            url: 'http://localhost:3000',
+            description: 'Local server',
+        },
+    ],
+    paths: {
+        '/api/jobs': {
+            get: {
+                summary: 'Get all jobs',
+                tags: ['Jobs'],
+                responses: {
+                    '200': {
+                        description: 'List of jobs',
+                        content: {
+                            'application/json': {
+                                schema: {
+                                    type: 'array',
+                                    items: {
+                                        type: 'object',
+                                        properties: {
+                                            id: { type: 'string' },
+                                            title: { type: 'string' },
+                                            description: { type: 'string' },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+    components: {
+        securitySchemes: {
+            bearerAuth: {
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+            },
+        },
+    },
+    security: [{ bearerAuth: [] }],
 };
-exports.setupSwagger = setupSwagger;

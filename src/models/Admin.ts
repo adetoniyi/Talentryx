@@ -20,7 +20,7 @@ const AdminSchema: Schema = new Schema(
     phone: { type: String, required: true },
     profilePicUrl: { type: String },
     isVerified: { type: Boolean, default: false },
-    verificationToken: { type: String, required: true }, 
+    verificationToken: { type: String, required: true },
   },
   { timestamps: true }
 );
