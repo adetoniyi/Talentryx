@@ -31,7 +31,7 @@ function asyncHandler(
 /**
  * @swagger
  * tags:
- *   name: Profile
+ *   name: Authentication
  *   description: User profile management endpoints
  */
 
@@ -40,7 +40,7 @@ function asyncHandler(
  * /api/profile:
  *   post:
  *     summary: Create or update user profile
- *     tags: [Profile]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     consumes:
@@ -88,7 +88,7 @@ router.post(
  * /api/profile:
  *   get:
  *     summary: Get current user's profile
- *     tags: [Profile]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     responses:
