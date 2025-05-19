@@ -28,7 +28,7 @@ function asyncHandler(fn) {
  * /api/users/register:
  *   post:
  *     summary: Register a new user
- *     tags: [User Auth]
+ *     tags: Authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -39,6 +39,7 @@ function asyncHandler(fn) {
  *               - name
  *               - email
  *               - password
+ *               - phone
  *             properties:
  *               name:
  *                 type: string
@@ -46,6 +47,8 @@ function asyncHandler(fn) {
  *               email:
  *                 type: string
  *                 example: john@example.com
+ *                 phone: string
+ *                 example: 01234567890
  *               password:
  *                 type: string
  *                 example: strongpassword123
@@ -61,7 +64,7 @@ router.post("/signup", asyncHandler(userAuthController_1.userSignup));
  * /api/users/login:
  *   post:
  *     summary: Login a user
- *     tags: [User Auth]
+ *     tags: Authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -71,10 +74,13 @@ router.post("/signup", asyncHandler(userAuthController_1.userSignup));
  *             required:
  *               - email
  *               - password
+ *               - phone
  *             properties:
  *               email:
  *                 type: string
  *                 example: john@example.com
+ *               phone: string
+ *                example: 01234567890
  *               password:
  *                 type: string
  *                 example: strongpassword123

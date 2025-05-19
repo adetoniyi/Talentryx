@@ -31,7 +31,7 @@ function asyncHandler(
 /**
  * @swagger
  * tags:
- *   name: User Authentication
+ *   name: Authentication
  *   description: User authentication endpoints
  */
 
@@ -40,7 +40,7 @@ function asyncHandler(
  * /api/users/register:
  *   post:
  *     summary: Register a new user
- *     tags: [User Auth]
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -51,6 +51,7 @@ function asyncHandler(
  *               - name
  *               - email
  *               - password
+ *               - phone
  *             properties:
  *               name:
  *                 type: string
@@ -74,7 +75,7 @@ router.post("/signup", asyncHandler(userSignup));
  * /api/users/login:
  *   post:
  *     summary: Login a user
- *     tags: [User Auth]
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -104,7 +105,7 @@ router.post("/login", asyncHandler(userLogin));
  * /api/users/me:
  *   get:
  *     summary: Get the logged-in user's profile
- *     tags: [User Auth]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     responses:

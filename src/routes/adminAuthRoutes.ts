@@ -30,8 +30,8 @@ function asyncHandler(
 /**
  * @swagger
  * tags:
- *   name: Admin Auth
- *   description: Admin authentication routes
+ *   name: Authentication
+ *   description: Authentication routes
  */
 
 /**
@@ -39,7 +39,7 @@ function asyncHandler(
  * /api/admin/signup:
  *   post:
  *     summary: Admin signup
- *     tags: [Admin Auth]
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -47,13 +47,19 @@ function asyncHandler(
  *           schema:
  *             type: object
  *             required:
+ *               - name
  *               - email
  *               - password
+ *               - phone
  *             properties:
+ *               name:
+ *                 type: string
  *               email:
  *                 type: string
  *               password:
  *                 type: string
+ *               phone:
+ *                 type: number
  *     responses:
  *       201:
  *         description: Admin created successfully
@@ -67,7 +73,7 @@ router.post("/signup", asyncHandler(adminSignup));
  * /api/admin/login:
  *   post:
  *     summary: Admin login
- *     tags: [Admin Auth]
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -95,7 +101,7 @@ router.post("/login", asyncHandler(adminLogin));
  * /api/admin/verify/{token}:
  *   get:
  *     summary: Verify admin email using token
- *     tags: [Admin Auth]
+ *     tags: [Authentication]
  *     parameters:
  *       - in: path
  *         name: token

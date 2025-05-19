@@ -55,7 +55,7 @@ function asyncHandler(
  *               name:
  *                 type: string
  *               phone:
- *                 type: string
+ *                 type: number
  *               experience:
  *                 type: string
  *               skills:
