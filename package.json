@@ -20,7 +20,7 @@
   ],
   "author": "Adeniyi Pelumi Adetoniyi",
   "license": "ISC",
-  "description": "User and Job Management API for a Job Board application. This API allows users to register, login, and manage their profiles, as well as create, update, and delete job postings. It also includes features for uploading images and sending emails.",
+  "description": "User and Job Management API for a Job Board application for Adetoniyi Job Portal. This API allows users to register, login, and manage their profiles, as well as create, update, and delete job postings. It also includes features for uploading images and sending emails.",
   "dependencies": {
     "@types/helmet": "^0.0.48",
     "bcryptjs": "^3.0.2",

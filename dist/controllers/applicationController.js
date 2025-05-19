@@ -25,10 +25,19 @@ const applyForJob = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             return res.status(404).json({ error: "Job not found" });
         const profile = yield profile_1.default.findOne({ user: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id });
         if (!profile || !profile.resumeUrl)
-            return res.status(400).json({ error: "Complete your profile and upload resume before applying" });
-        const alreadyApplied = yield Application_1.default.findOne({ job: jobId, user: (_b = req.user) === null || _b === void 0 ? void 0 : _b.id });
+            return res
+                .status(400)
+                .json({
+                error: "Complete your profile and upload resume before applying",
+            });
+        const alreadyApplied = yield Application_1.default.findOne({
+            job: jobId,
+            user: (_b = req.user) === null || _b === void 0 ? void 0 : _b.id,
+        });
         if (alreadyApplied)
-            return res.status(400).json({ error: "You have already applied for this job" });
+            return res
+                .status(400)
+                .json({ error: "You have already applied for this job" });
         const application = yield Application_1.default.create({
             job: jobId,
             user: (_c = req.user) === null || _c === void 0 ? void 0 : _c.id,

@@ -2,36 +2,36 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.swaggerDocument = void 0;
 exports.swaggerDocument = {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-        title: 'API Job Board',
-        version: '1.0.0',
-        description: 'Job Board API documentation',
+        title: "API Job Board",
+        version: "1.0.0",
+        description: "Job Board API documentation",
     },
     servers: [
         {
-            url: 'http://localhost:3000',
-            description: 'Local server',
+            url: "http://localhost:3000",
+            description: "Local server",
         },
     ],
     paths: {
-        '/api/jobs': {
+        "/api/jobs": {
             get: {
-                summary: 'Get all jobs',
-                tags: ['Jobs'],
+                summary: "Get all jobs",
+                tags: ["Jobs"],
                 responses: {
-                    '200': {
-                        description: 'List of jobs',
+                    "200": {
+                        description: "List of jobs",
                         content: {
-                            'application/json': {
+                            "application/json": {
                                 schema: {
-                                    type: 'array',
+                                    type: "array",
                                     items: {
-                                        type: 'object',
+                                        type: "object",
                                         properties: {
-                                            id: { type: 'string' },
-                                            title: { type: 'string' },
-                                            description: { type: 'string' },
+                                            id: { type: "string" },
+                                            title: { type: "string" },
+                                            description: { type: "string" },
                                         },
                                     },
                                 },
@@ -45,9 +45,9 @@ exports.swaggerDocument = {
     components: {
         securitySchemes: {
             bearerAuth: {
-                type: 'http',
-                scheme: 'bearer',
-                bearerFormat: 'JWT',
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT",
             },
         },
     },

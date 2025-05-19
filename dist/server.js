@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require('dotenv').config();
+require("dotenv").config();
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
 const db_1 = __importDefault(require("./config/db"));
@@ -12,10 +12,11 @@ const db_1 = __importDefault(require("./config/db"));
 // Removed duplicate mongoose import
 const mongoURL = process.env.MONGODB_URL;
 if (!mongoURL) {
-    throw new Error('MONGODB_URL is not defined in environment variables');
+    throw new Error("MONGODB_URL is not defined in environment variables");
 }
 // Connect to MongoDB
-mongoose_1.default.connect(mongoURL)
+mongoose_1.default
+    .connect(mongoURL)
     .then(() => console.log("MongoDB Connected"))
     .catch((err) => console.log("MongoDB connection failed", err));
 const PORT = process.env.PORT || 5000;

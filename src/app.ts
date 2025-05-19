@@ -14,21 +14,31 @@ import jobRoutes from "./routes/jobRoutes";
 import applicationRoutes from "./routes/applicationRoutes";
 import profileRoutes from "./routes/profileRoutes";
 import adminDashboardRoutes from "./routes/adminDashboardRoutes";
-import { swaggerDocument } from './swagger/swagger'
+import swaggerJSDoc from "swagger-jsdoc";
 
+// swagger configuration
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Job Portal API",
+      version: "1.0.0",
+      description: "API documentation for Job Portal",
+    },
+    servers: [
+      {
+        url: "http://localhost:5000",
+      },
+    ],
+  },
+  apis: ["./src/routes/*.ts"], // Path to the API docs
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+const swaggerDocument = swaggerSpec;
 
 const app = express();
 
-/* Import swagger setup
-/const swaggerDocument = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../docs/swagger.json'), 'utf8')
-);
-const swaggerOptions = {
-  swaggerOptions: {
-    url: 'http://localhost:5000/api-docs',
-  },
-};
-*/
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -36,7 +46,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 
 // Routes
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/admin/auth", adminAuthRoutes);
 app.use("/api/user/auth", userAuthRoutes);
 app.use("/api/jobs", jobRoutes);

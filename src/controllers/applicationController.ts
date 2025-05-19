@@ -3,7 +3,11 @@ import Application from "../models/Application";
 import Job from "../models/Job";
 import Profile from "../models/profile";
 
-export const applyForJob = async (req: Request, res: Response, next: NextFunction) => {
+export const applyForJob = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { jobId } = req.params;
 
@@ -12,11 +16,20 @@ export const applyForJob = async (req: Request, res: Response, next: NextFunctio
 
     const profile = await Profile.findOne({ user: req.user?.id });
     if (!profile || !profile.resumeUrl)
-      return res.status(400).json({ error: "Complete your profile and upload resume before applying" });
+      return res
+        .status(400)
+        .json({
+          error: "Complete your profile and upload resume before applying",
+        });
 
-    const alreadyApplied = await Application.findOne({ job: jobId, user: req.user?.id });
+    const alreadyApplied = await Application.findOne({
+      job: jobId,
+      user: req.user?.id,
+    });
     if (alreadyApplied)
-      return res.status(400).json({ error: "You have already applied for this job" });
+      return res
+        .status(400)
+        .json({ error: "You have already applied for this job" });
 
     const application = await Application.create({
       job: jobId,
@@ -30,7 +43,11 @@ export const applyForJob = async (req: Request, res: Response, next: NextFunctio
   }
 };
 
-export const getUserApplications = async (req: Request, res: Response, next: NextFunction) => {
+export const getUserApplications = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const applications = await Application.find({ user: req.user?.id })
       .populate("job")
@@ -42,7 +59,11 @@ export const getUserApplications = async (req: Request, res: Response, next: Nex
   }
 };
 
-export const getApplicationsForJob = async (req: Request, res: Response, next: NextFunction) => {
+export const getApplicationsForJob = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { jobId } = req.params;
 
@@ -56,7 +77,11 @@ export const getApplicationsForJob = async (req: Request, res: Response, next: N
   }
 };
 
-export const updateApplicationStatus = async (req: Request, res: Response, next: NextFunction) => {
+export const updateApplicationStatus = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { appId } = req.params;
     const { status } = req.body;
@@ -67,7 +92,8 @@ export const updateApplicationStatus = async (req: Request, res: Response, next:
       { new: true }
     );
 
-    if (!application) return res.status(404).json({ error: "Application not found" });
+    if (!application)
+      return res.status(404).json({ error: "Application not found" });
 
     res.status(200).json({ success: true, data: application });
   } catch (err) {

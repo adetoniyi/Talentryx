@@ -2,9 +2,15 @@ import { Request, Response, NextFunction } from "express";
 import Job from "../models/Job";
 import Application from "../models/Application";
 
-export const getAdminJobs = async (req: Request, res: Response, next: NextFunction) => {
+export const getAdminJobs = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const jobs = await Job.find({ postedBy: req.user?.id }).sort({ createdAt: -1 });
+    const jobs = await Job.find({ postedBy: req.user?.id }).sort({
+      createdAt: -1,
+    });
 
     res.status(200).json({
       success: true,
@@ -16,7 +22,11 @@ export const getAdminJobs = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
-export const getApplicationsForAdminJobs = async (req: Request, res: Response, next: NextFunction) => {
+export const getApplicationsForAdminJobs = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const jobs = await Job.find({ postedBy: req.user?.id });
 

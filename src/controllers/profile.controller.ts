@@ -6,14 +6,21 @@ export interface CloudinaryUploadResult {
   [key: string]: any;
 }
 
-export function uploadToCloudinary(filePath: string, folder: string): Promise<CloudinaryUploadResult> {
+export function uploadToCloudinary(
+  filePath: string,
+  folder: string
+): Promise<CloudinaryUploadResult> {
   // Placeholder implementation, replace with actual Cloudinary upload logic
   return Promise.resolve({
     secure_url: "https://example.com/dummy-url",
   });
 }
 
-export const createOrUpdateProfile = async (req: Request, res: Response, next: NextFunction) => {
+export const createOrUpdateProfile = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { name, phone, experience, skills } = req.body;
 
@@ -30,12 +37,18 @@ export const createOrUpdateProfile = async (req: Request, res: Response, next: N
     let profilePictureUrl = "";
 
     if (resumeFile) {
-      const resumeUpload = await uploadToCloudinary(resumeFile[0].path, "resumes");
+      const resumeUpload = await uploadToCloudinary(
+        resumeFile[0].path,
+        "resumes"
+      );
       resumeUrl = resumeUpload.secure_url;
     }
 
     if (profilePic) {
-      const picUpload = await uploadToCloudinary(profilePic[0].path, "profile_pics");
+      const picUpload = await uploadToCloudinary(
+        profilePic[0].path,
+        "profile_pics"
+      );
       profilePictureUrl = picUpload.secure_url;
     }
 
@@ -60,10 +73,17 @@ export const createOrUpdateProfile = async (req: Request, res: Response, next: N
   }
 };
 
-export const getUserProfile = async (req: Request, res: Response, next: NextFunction) => {
+export const getUserProfile = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const profile = await Profile.findOne({ user: req.user?.id });
-    if (!profile) return res.status(404).json({ success: false, error: "Profile not found" });
+    if (!profile)
+      return res
+        .status(404)
+        .json({ success: false, error: "Profile not found" });
 
     res.status(200).json({ success: true, data: profile });
   } catch (err) {

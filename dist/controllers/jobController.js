@@ -16,9 +16,8 @@ exports.deleteJob = exports.updateJob = exports.getJobById = exports.getJobs = e
 const Job_1 = __importDefault(require("../models/Job"));
 // Create a job
 const createJob = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        const newJob = yield Job_1.default.create(Object.assign(Object.assign({}, req.body), { createdBy: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id }));
+        const newJob = yield Job_1.default.create(req.body);
         res.status(201).json({ success: true, data: newJob });
     }
     catch (err) {
@@ -66,7 +65,9 @@ const updateJob = (req, res, next) => __awaiter(void 0, void 0, void 0, function
     try {
         const job = yield Job_1.default.findOneAndUpdate({ _id: req.params.id, createdBy: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id }, req.body, { new: true });
         if (!job)
-            return res.status(404).json({ success: false, error: "Job not found or not authorized" });
+            return res
+                .status(404)
+                .json({ success: false, error: "Job not found or not authorized" });
         res.status(200).json({ success: true, data: job });
     }
     catch (err) {
@@ -83,8 +84,12 @@ const deleteJob = (req, res, next) => __awaiter(void 0, void 0, void 0, function
             createdBy: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id,
         });
         if (!job)
-            return res.status(404).json({ success: false, error: "Job not found or not authorized" });
-        res.status(200).json({ success: true, message: "Job deleted successfully" });
+            return res
+                .status(404)
+                .json({ success: false, error: "Job not found or not authorized" });
+        res
+            .status(200)
+            .json({ success: true, message: "Job deleted successfully" });
     }
     catch (err) {
         next(err);

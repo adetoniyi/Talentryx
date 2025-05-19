@@ -57,7 +57,9 @@ const getUserProfile = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     try {
         const profile = yield profile_1.default.findOne({ user: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id });
         if (!profile)
-            return res.status(404).json({ success: false, error: "Profile not found" });
+            return res
+                .status(404)
+                .json({ success: false, error: "Profile not found" });
         res.status(200).json({ success: true, data: profile });
     }
     catch (err) {

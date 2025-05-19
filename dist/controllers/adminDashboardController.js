@@ -18,7 +18,9 @@ const Application_1 = __importDefault(require("../models/Application"));
 const getAdminJobs = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        const jobs = yield Job_1.default.find({ postedBy: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id }).sort({ createdAt: -1 });
+        const jobs = yield Job_1.default.find({ postedBy: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id }).sort({
+            createdAt: -1,
+        });
         res.status(200).json({
             success: true,
             count: jobs.length,

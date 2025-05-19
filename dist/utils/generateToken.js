@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const generateToken = (id, role) => {
-    return jsonwebtoken_1.default.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN ? parseInt(process.env.JWT_EXPIRES_IN, 10) : undefined, });
+    return jsonwebtoken_1.default.sign({ id, role }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN
+            ? parseInt(process.env.JWT_EXPIRES_IN, 10)
+            : undefined,
+    });
 };
 exports.generateToken = generateToken;

@@ -2,13 +2,13 @@ import { Request, Response, NextFunction } from "express";
 import Job from "../models/Job";
 
 // Create a job
-export const createJob = async (req: Request, res: Response, next: NextFunction) => {
+export const createJob = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
   try {
-    const newJob = await Job.create({
-      ...req.body,
-      createdBy: req.user?.id,
-    });
-
+    const newJob = await Job.create(req.body);
     res.status(201).json({ success: true, data: newJob });
   } catch (err) {
     next(err);
@@ -16,7 +16,11 @@ export const createJob = async (req: Request, res: Response, next: NextFunction)
 };
 
 // Get all jobs with filters
-export const getJobs = async (req: Request, res: Response, next: NextFunction) => {
+export const getJobs = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { location, jobType, title } = req.query;
     let query: any = {};
@@ -34,7 +38,11 @@ export const getJobs = async (req: Request, res: Response, next: NextFunction) =
 };
 
 // Get single job
-export const getJobById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const getJobById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
   try {
     const job = await Job.findById(req.params.id);
 
@@ -49,9 +57,12 @@ export const getJobById = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-
 // Update job
-export const updateJob = async (req: Request, res: Response, next: NextFunction) => {
+export const updateJob = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const job = await Job.findOneAndUpdate(
       { _id: req.params.id, createdBy: req.user?.id },
@@ -59,7 +70,10 @@ export const updateJob = async (req: Request, res: Response, next: NextFunction)
       { new: true }
     );
 
-    if (!job) return res.status(404).json({ success: false, error: "Job not found or not authorized" });
+    if (!job)
+      return res
+        .status(404)
+        .json({ success: false, error: "Job not found or not authorized" });
 
     res.status(200).json({ success: true, data: job });
   } catch (err) {
@@ -68,16 +82,25 @@ export const updateJob = async (req: Request, res: Response, next: NextFunction)
 };
 
 // Delete job
-export const deleteJob = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteJob = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const job = await Job.findOneAndDelete({
       _id: req.params.id,
       createdBy: req.user?.id,
     });
 
-    if (!job) return res.status(404).json({ success: false, error: "Job not found or not authorized" });
+    if (!job)
+      return res
+        .status(404)
+        .json({ success: false, error: "Job not found or not authorized" });
 
-    res.status(200).json({ success: true, message: "Job deleted successfully" });
+    res
+      .status(200)
+      .json({ success: true, message: "Job deleted successfully" });
   } catch (err) {
     next(err);
   }

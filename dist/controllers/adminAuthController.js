@@ -24,7 +24,9 @@ const adminSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     // Check if admin exists
     const existingAdmin = yield Admin_1.default.findOne({ email });
     if (existingAdmin) {
-        return res.status(400).json({ success: false, error: "Admin already exists" });
+        return res
+            .status(400)
+            .json({ success: false, error: "Admin already exists" });
     }
     // Hash password
     const hashedPassword = yield (0, authServices_1.hashPassword)(password);
@@ -51,27 +53,41 @@ const verifyAdminEmail = (req, res) => __awaiter(void 0, void 0, void 0, functio
     const { token } = req.params;
     const admin = yield Admin_1.default.findOne({ verificationToken: token });
     if (!admin) {
-        return res.status(400).json({ success: false, error: "Invalid or expired verification token" });
+        return res
+            .status(400)
+            .json({ success: false, error: "Invalid or expired verification token" });
     }
     admin.isVerified = true;
     admin.verificationToken = undefined;
     yield admin.save();
-    res.json({ success: true, message: "Email verified successfully. You can now login." });
+    res.json({
+        success: true,
+        message: "Email verified successfully. You can now login.",
+    });
 });
 exports.verifyAdminEmail = verifyAdminEmail;
 // Admin Login
 const adminLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
-    const admin = yield Admin_1.default.findOne({ email });
+    const admin = (yield Admin_1.default.findOne({ email }));
     if (!admin) {
-        return res.status(400).json({ success: false, error: "Invalid credentials" });
+        return res
+            .status(400)
+            .json({ success: false, error: "Invalid credentials" });
     }
     if (!admin.isVerified) {
-        return res.status(401).json({ success: false, error: "Please verify your email before logging in" });
+        return res
+            .status(401)
+            .json({
+            success: false,
+            error: "Please verify your email before logging in",
+        });
     }
     const isMatch = yield (0, authServices_1.comparePassword)(password, admin.password);
     if (!isMatch) {
-        return res.status(400).json({ success: false, error: "Invalid credentials" });
+        return res
+            .status(400)
+            .json({ success: false, error: "Invalid credentials" });
     }
     const token = (0, generateToken_1.generateToken)(admin._id.toString(), "admin");
     res.json({ success: true, token });

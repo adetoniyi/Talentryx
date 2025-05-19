@@ -19,7 +19,11 @@ const JobSchema: Schema = new Schema(
     companyName: { type: String, required: true },
     description: { type: String, required: true },
     location: { type: String, required: true },
-    jobType: { type: String, enum: ["Full-time", "Part-time", "Contract"], required: true },
+    jobType: {
+      type: String,
+      enum: ["Full-time", "Part-time", "Contract"],
+      required: true,
+    },
     salaryRange: { type: String },
     applicationDeadline: { type: Date, required: true },
     postedBy: { type: Schema.Types.ObjectId, ref: "Admin" },

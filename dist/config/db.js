@@ -16,13 +16,13 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!process.env.MONGODB_URL) {
-            throw new Error('MONGODB_URL is not defined in environment variables');
+            throw new Error("MONGODB_URL is not defined in environment variables");
         }
         yield mongoose_1.default.connect(process.env.MONGODB_URL);
-        console.log('MongoDB connected');
+        console.log("MongoDB connected");
     }
     catch (error) {
-        console.error('MongoDB connection failed', error);
+        console.error("MongoDB connection failed", error);
         process.exit(1);
     }
 });

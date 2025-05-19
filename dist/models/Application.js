@@ -38,6 +38,10 @@ const ApplicationSchema = new mongoose_1.Schema({
     userId: { type: mongoose_1.Schema.Types.ObjectId, ref: "User", required: true },
     jobId: { type: mongoose_1.Schema.Types.ObjectId, ref: "Job", required: true },
     resumeUrl: { type: String, required: true },
-    status: { type: String, enum: ["applied", "accepted", "rejected"], default: "applied" },
+    status: {
+        type: String,
+        enum: ["applied", "accepted", "rejected"],
+        default: "applied",
+    },
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("Application", ApplicationSchema);
