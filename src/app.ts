@@ -4,7 +4,7 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import helmet from "helmet";
 import "express-async-errors"; // For async error handling
-import path from "path";
+
 import fs from "fs";
 
 import { errorHandler } from "./middlewares/errorHandler";
@@ -37,7 +37,13 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 const swaggerDocument = swaggerSpec;
 
+const path = require("path");
+const bodyParser = require("body-parser");
+
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: "false" }));
+app.use(bodyParser.json());
 
 // Middleware
 app.use(cors());

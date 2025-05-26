@@ -36,7 +36,7 @@ function asyncHandler(
 
 /**
  * @swagger
- * /api/admin/signup:
+ * /api/admin/auth/signup:
  *   post:
  *     summary: Admin signup
  *     tags: [Authentication]
@@ -59,7 +59,7 @@ function asyncHandler(
  *               password:
  *                 type: string
  *               phone:
- *                 type: number
+ *                 type: string
  *     responses:
  *       201:
  *         description: Admin created successfully
@@ -70,7 +70,7 @@ router.post("/signup", asyncHandler(adminSignup));
 
 /**
  * @swagger
- * /api/admin/login:
+ * /api/admin/auth/login:
  *   post:
  *     summary: Admin login
  *     tags: [Authentication]
@@ -98,7 +98,7 @@ router.post("/login", asyncHandler(adminLogin));
 
 /**
  * @swagger
- * /api/admin/verify/{token}:
+ * /api/admin/auth/verify/{token}:
  *   get:
  *     summary: Verify admin email using token
  *     tags: [Authentication]

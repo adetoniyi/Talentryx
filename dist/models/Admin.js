@@ -40,7 +40,5 @@ const AdminSchema = new mongoose_1.Schema({
     password: { type: String, required: true },
     phone: { type: String, required: true },
     profilePicUrl: { type: String },
-    isVerified: { type: Boolean, default: true },
-    verificationToken: { type: String },
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("Admin", AdminSchema);

@@ -20,7 +20,7 @@ function asyncHandler(fn) {
 /**
  * @swagger
  * tags:
- *   name: Profile
+ *   name: Authentication
  *   description: User profile management endpoints
  */
 /**
@@ -28,7 +28,7 @@ function asyncHandler(fn) {
  * /api/profile:
  *   post:
  *     summary: Create or update user profile
- *     tags: [Profile]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     consumes:
@@ -43,7 +43,7 @@ function asyncHandler(fn) {
  *               name:
  *                 type: string
  *               phone:
- *                 type: string
+ *                 type: number
  *               experience:
  *                 type: string
  *               skills:
@@ -70,7 +70,7 @@ router.post("/", asyncHandler(authMiddleware_1.authenticateJWT), upload.fields([
  * /api/profile:
  *   get:
  *     summary: Get current user's profile
- *     tags: [Profile]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     responses:

@@ -37,7 +37,7 @@ function asyncHandler(
 
 /**
  * @swagger
- * /api/users/register:
+ * /api/users/auth/register:
  *   post:
  *     summary: Register a new user
  *     tags: [Authentication]
@@ -72,7 +72,7 @@ router.post("/signup", asyncHandler(userSignup));
 
 /**
  * @swagger
- * /api/users/login:
+ * /api/users/auth/login:
  *   post:
  *     summary: Login a user
  *     tags: [Authentication]
@@ -102,7 +102,7 @@ router.post("/login", asyncHandler(userLogin));
 
 /**
  * @swagger
- * /api/users/me:
+ * /api/users/auth/me:
  *   get:
  *     summary: Get the logged-in user's profile
  *     tags: [Authentication]

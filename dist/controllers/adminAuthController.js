@@ -37,7 +37,7 @@ const adminSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         name,
         email,
         password: hashedPassword,
-        verificationToken,
+        phone: req.body.phone,
     });
     yield admin.save();
     // Send verification email (async)
@@ -57,8 +57,6 @@ const verifyAdminEmail = (req, res) => __awaiter(void 0, void 0, void 0, functio
             .status(400)
             .json({ success: false, error: "Invalid or expired verification token" });
     }
-    admin.isVerified = true;
-    admin.verificationToken = undefined;
     yield admin.save();
     res.json({
         success: true,
@@ -74,14 +72,6 @@ const adminLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return res
             .status(400)
             .json({ success: false, error: "Invalid credentials" });
-    }
-    if (!admin.isVerified) {
-        return res
-            .status(401)
-            .json({
-            success: false,
-            error: "Please verify your email before logging in",
-        });
     }
     const isMatch = yield (0, authServices_1.comparePassword)(password, admin.password);
     if (!isMatch) {

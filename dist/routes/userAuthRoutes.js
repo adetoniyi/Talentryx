@@ -20,15 +20,15 @@ function asyncHandler(fn) {
 /**
  * @swagger
  * tags:
- *   name: User Authentication
+ *   name: Authentication
  *   description: User authentication endpoints
  */
 /**
  * @swagger
- * /api/users/register:
+ * /api/users/auth/register:
  *   post:
  *     summary: Register a new user
- *     tags: Authentication
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -47,8 +47,6 @@ function asyncHandler(fn) {
  *               email:
  *                 type: string
  *                 example: john@example.com
- *                 phone: string
- *                 example: 01234567890
  *               password:
  *                 type: string
  *                 example: strongpassword123
@@ -61,10 +59,10 @@ function asyncHandler(fn) {
 router.post("/signup", asyncHandler(userAuthController_1.userSignup));
 /**
  * @swagger
- * /api/users/login:
+ * /api/users/auth/login:
  *   post:
  *     summary: Login a user
- *     tags: Authentication
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -74,13 +72,10 @@ router.post("/signup", asyncHandler(userAuthController_1.userSignup));
  *             required:
  *               - email
  *               - password
- *               - phone
  *             properties:
  *               email:
  *                 type: string
  *                 example: john@example.com
- *               phone: string
- *                example: 01234567890
  *               password:
  *                 type: string
  *                 example: strongpassword123
@@ -93,10 +88,10 @@ router.post("/signup", asyncHandler(userAuthController_1.userSignup));
 router.post("/login", asyncHandler(userAuthController_1.userLogin));
 /**
  * @swagger
- * /api/users/me:
+ * /api/users/auth/me:
  *   get:
  *     summary: Get the logged-in user's profile
- *     tags: [User Auth]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     responses:

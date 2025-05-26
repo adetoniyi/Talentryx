@@ -36,7 +36,11 @@ const swaggerOptions = {
 };
 const swaggerSpec = (0, swagger_jsdoc_1.default)(swaggerOptions);
 const swaggerDocument = swaggerSpec;
+const path = require("path");
+const bodyParser = require("body-parser");
 const app = (0, express_1.default)();
+app.use(bodyParser.urlencoded({ extended: "false" }));
+app.use(bodyParser.json());
 // Middleware
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());

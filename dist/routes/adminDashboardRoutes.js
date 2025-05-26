@@ -18,7 +18,7 @@ function asyncHandler(fn) {
 /**
  * @swagger
  * tags:
- *   name: Admin Dashboard
+ *   name: Authentication
  *   description: Routes for admin to manage jobs and applications
  */
 /**
@@ -26,7 +26,7 @@ function asyncHandler(fn) {
  * /api/admin/dashboard/jobs:
  *   get:
  *     summary: Get all job listings
- *     tags: [Admin Dashboard]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -41,7 +41,7 @@ router.get("/dashboard/jobs", asyncHandler(verifyToken_1.verifyAdminToken), asyn
  * /api/admin/dashboard/applications:
  *   get:
  *     summary: Get all applications for admin jobs
- *     tags: [Admin Dashboard]
+ *     tags: [Authentication]
  *     security:
  *       - bearerAuth: []
  *     responses:

@@ -28,7 +28,7 @@ export const adminSignup = async (req: Request, res: Response) => {
     name,
     email,
     password: hashedPassword,
-    verificationToken,
+    phone: req.body.phone,
   });
   await admin.save();
 
@@ -53,8 +53,6 @@ export const verifyAdminEmail = async (req: Request, res: Response) => {
       .json({ success: false, error: "Invalid or expired verification token" });
   }
 
-  admin.isVerified = true;
-  admin.verificationToken = undefined;
   await admin.save();
 
   res.json({
@@ -74,15 +72,6 @@ export const adminLogin = async (req: Request, res: Response) => {
     return res
       .status(400)
       .json({ success: false, error: "Invalid credentials" });
-  }
-
-  if (!admin.isVerified) {
-    return res
-      .status(401)
-      .json({
-        success: false,
-        error: "Please verify your email before logging in",
-      });
   }
 
   const isMatch = await comparePassword(password, admin.password);

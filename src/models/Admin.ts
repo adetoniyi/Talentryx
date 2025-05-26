@@ -6,10 +6,6 @@ export interface IAdmin extends Document {
   password: string;
   phone: string;
   profilePicUrl?: string;
-  isVerified: boolean;
-  verificationToken?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
 const AdminSchema: Schema = new Schema(
@@ -19,8 +15,6 @@ const AdminSchema: Schema = new Schema(
     password: { type: String, required: true },
     phone: { type: String, required: true },
     profilePicUrl: { type: String },
-    isVerified: { type: Boolean, default: true },
-    verificationToken: { type: String },
   },
   { timestamps: true }
 );
