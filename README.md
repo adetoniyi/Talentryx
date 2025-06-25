@@ -84,6 +84,6 @@ Here’s a breakdown of the **Talentryx API: A Scalable Job Platform Engine with
 - Source code repository (GitHub) with clear instructions for setup and testing. Also, include the link to your hosted swagger/api docs in readme of this project.
 - Host on Render or any hosting provider.
 - Take note of key details such as project structure, making sure it adheres to Softcode's standard
-- Submission deadline (Friday 23rd of May 2025, 12 PM WAT). Good luck
+- Include a brief explanation of how you approached the project, including any challenges you faced and how you overcame them.
 
 This project will help interns demonstrate their ability to work with a full-fledged API using modern technologies while managing real-world functionalities. Would you like to proceed with setting up more detailed specs or guidelines?
