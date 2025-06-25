@@ -1,8 +1,8 @@
-# Ade-Recruit
+# Talentryx
 
-Here’s a breakdown of the **Adetoniyi Groups Recruit API** project:
+Here’s a breakdown of the **Talentryx API: A Scalable Job Platform Engine with TypeScript**
 
-### **Project: Job Board API**
+### **Project: Talentryx API**
 
 #### **Tech Stack:**
 

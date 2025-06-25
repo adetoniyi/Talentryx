@@ -1,5 +1,5 @@
 {
-  "name": "apijobboard",
+  "name": "talentryx",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "talentryx",
+    "job portal",
+    "job board",
+    "job management",
+    "user management",
+    "user authentication",
+    "job posting",
+    "job application",
+    "job seeker",
+    "employer",
+    "job seeker management",
     "job",
     "board",
     "api",
